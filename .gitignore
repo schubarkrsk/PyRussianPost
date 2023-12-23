@@ -2,3 +2,5 @@ internals/
 .idea/
 venv/
 pyrussianpost/test.py
+pyrussianpost/*.log
+*.log
