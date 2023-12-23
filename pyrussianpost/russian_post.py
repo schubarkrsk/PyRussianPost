@@ -1,10 +1,11 @@
 import zeep
+from pyrussianpost.utils import response_handler
 
 
-class RussianPost:
+class Tracking:
     def __init__(self, login, password):
         """
-        Инициализация объекта RussianPost.
+        Инициализация объекта Tracking.
 
         Parameters:
         - login (str): Логин для доступа к API Сервиса отслеживания.
@@ -44,3 +45,8 @@ class RussianPost:
         response = self.client.service.getOperationHistory(**operation_history_request)
 
         return response
+
+    def get_waypoints(self, barcode):
+        tracking_data = self.get_operation_history(barcode=barcode)
+        waypoints = response_handler.waypoints_handler(tracking_data)
+        return waypoints
